@@ -37,7 +37,7 @@ export default {
 
             let i = this.$store.dispatch('postApi', data);
             i.then((result)=>{
-                // localStorage.removeItem('didi_token')
+                localStorage.removeItem('didi_token')
                 console.log(result)
                 if(result['data'].success) {
                     let msg = {}
