@@ -13,10 +13,21 @@ const users = sequelize.define('users', {
         type: Sequelize.STRING,
         allowNull: false,
     },
+    level : {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: '3'
+    },
     password : {
         type: Sequelize.STRING,
         allowNull: false,
-    }
+    },
+    createdAt: {
+        type: Sequelize.DATE,
+    },
+    updatedAt: {
+        type: Sequelize.DATE,
+    },
 })
 
 module.exports = users

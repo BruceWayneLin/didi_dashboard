@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import api from './modules/api'
+import control from './modules/control'
+import info from './modules/info'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -11,6 +14,8 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    api
+    api,
+    control,
+    info
   }
 })

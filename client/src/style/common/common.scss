@@ -1,0 +1,371 @@
+/* input default text size for disabled iOS auto Zoom in */
+
+input,
+input[type="text"],
+input[type="password"],
+select:focus,
+select {
+    // font-size: 16px !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    // outline: none;
+}
+
+/* Disabled Select */
+
+.unselect{
+    // user-select: none;
+}
+
+/* font settings */
+
+$bebasNeue: "BebasNeue";
+
+@mixin fontStyle($fontFamily, $fontSize, $color) {
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    color: $color;
+}
+
+$fontSize_default: 1em;
+$fontSize_normal: 0.9em;
+$fontSize_small: 0.8em;
+$fontSize_mini: 0.65em;
+
+@mixin closeBtnFakeEl {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 1px;
+    background: #fff;
+}
+
+/* iPhone X Safe Area fixing */
+
+/* iOS 11 up */
+
+@mixin safeArea {
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* iOS lower than 11 */
+
+@mixin safeAreaOld {
+    padding-top: constant(safe-area-inset-top);
+    padding-left: constant(safe-area-inset-left);
+    padding-right: constant(safe-area-inset-right);
+    padding-bottom: constant(safe-area-inset-bottom);
+}
+
+/* mixing obj */
+@mixin bgImage($bImageC) {
+    background-image: -moz-linear-gradient($bImageC);
+    background-image: -webkit-linear-gradient($bImageC);
+    background-image: -ms-linear-gradient($bImageC);
+    background-image: linear-gradient($bImageC);
+}
+
+@mixin fontSize($fontSize) {
+    font-size: $fontSize;
+}
+
+@mixin radius($radius) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+}
+
+@mixin boxSizing {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+/* easing function */
+
+@mixin easeInOutExpo($time) {
+    transition: all $time cubic-bezier(1, 0, 0, 1);
+    -webkit-transition: all $time cubic-bezier(1, 0, 0, 1);
+    -moz-transition: all $time cubic-bezier(1, 0, 0, 1);
+    -o-transition: all $time cubic-bezier(1, 0, 0, 1);
+}
+
+@mixin easeInOutQuint($time) {
+    transition: all $time cubic-bezier(0.86, 0, 0.07, 1);
+    -webkit-transition: all $time cubic-bezier(0.86, 0, 0.07, 1);
+    -moz-transition: all $time cubic-bezier(0.86, 0, 0.07, 1);
+    -o-transition: all $time cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+@mixin easeInOutBack($time) {
+    transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -webkit-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -moz-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -o-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Transform */
+
+@mixin transRotate($deg) {
+    transform: rotate($deg);
+    -webkit-transform: rotate($deg);
+    -ms-transform: rotate($deg);
+}
+
+/* filter */
+
+@mixin blur($blur) {
+    -webkit-filter: blur($blur);
+    -moz-filter: blur($blur);
+    -o-filter: blur($blur);
+    -ms-filter: blur($blur);
+    filter: blur($blur);
+}
+
+/* FlexBox */
+
+@for $i from 1 through 5 {
+    .flex#{$i} {
+        flex: $i;
+    }
+}
+
+@mixin flexBox($direction) {
+    display: flex;
+    flex-direction: $direction;
+}
+
+@mixin flexAlign($alignItems, $justifyContent) {
+    align-items: $alignItems;
+    justify-content: $justifyContent;
+}
+
+/* position offset */
+
+@mixin offSet($top, $right, $bottom, $left) {
+    top: $top;
+    left: $left;
+    right: $right;
+    bottom: $bottom;
+}
+
+/* grid system */
+
+@mixin grid_wrapper($direction) {
+    display: flex;
+    flex-direction: $direction;
+}
+
+@mixin grid($flex, $direction) {
+    flex: $flex;
+    flex-direction: $direction;
+}
+
+/* position center */
+
+@mixin alignCenter($position, $zIndex){
+    position: $position;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: $zIndex;
+}
+
+/* size */
+
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+/* media query */
+
+@mixin portrait {
+    @media all and (orientation: portrait) {
+        @content;
+    }
+}
+
+@mixin landscape {
+    @media all and (orientation: landscape) {
+        @content;
+    }
+}
+
+/*
+xs: <= 575px
+sm: 576px ~ 767px
+md: >= 768px
+lg: >= 992px
+xl: >= 1200px
+*/
+
+$aspect43: "only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2)";
+$aspect_iPad_10: "all and (min-device-width: 834px) and (max-device-width: 1112px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2)";
+$aspect_iPadPro: "all and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2)";
+$aspect169: "all and (min-aspect-ratio: 16/9)";
+$aspect1610: "all and (min-aspect-ratio: 16/10)";
+
+@mixin aspect_43 {
+    @media #{$aspect43} {
+        @content;
+    }
+}
+
+@mixin aspect_iPadPro {
+    @media #{$aspect_iPadPro} {
+        @content;
+    }
+}
+
+@mixin aspect_169 {
+    @media #{$aspect169} {
+        @content;
+    }
+}
+
+@mixin aspect_1610 {
+    @media #{$aspect1610} {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media all and (min-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media all and (max-width: 992px) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media all and (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin xs {
+    @media all and (max-width: 576px) {
+        @content;
+    }
+}
+
+@mixin customMax($width) {
+    @media all and (max-width: $width) {
+        @content;
+    }
+}
+@mixin customMin($width) {
+    @media all and (min-width: $width) {
+        @content;
+    }
+}
+
+@mixin iPhoneX {
+    @media all and (max-width: 812px) and (max-width: 375px) {
+        @content;
+    }
+}
+
+@mixin landScape_lg{
+    @media all and (min-height: 600px) and (orientation:landscape){
+        @content;
+    }
+}
+
+@mixin borderRadius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+
+html, body {
+    font-family: "Microsoft JhengHei", Helvetica, sans-serif;
+    height: 100%;
+    width: 100%;
+    touch-action: manipulation; /* disable iOS double touch zoom in */
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+html, body, div, section, aside, figure, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    // vertical-align: baseline;
+    background: transparent;
+	text-decoration: none;
+}
+body {
+    line-height: 1;
+    background-color: white!important;
+}
+
+.app {
+    height: 100%;
+}
+
+table {
+    margin-bottom: 0px!important;
+}
+
+.btn-area-footer {
+    background: white;
+    padding: 15px 0px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin: 0px;
+    @include customMax(500px) {
+        margin: 0px -15px;
+    }
+    button {
+        cursor: pointer;
+    }
+}
+
+body, html {
+    margin: 0px;
+    background: white;
+}
+
+.navDefault {
+    @include flexBox(row);
+    @include flexAlign(baseline, flex-end);
+    div {
+        vertical-align: middle;
+        text-align: center;
+    };
+    width: 100%;
+    height: 60px;
+    .logo {
+        position: absolute;
+        left: 15px;
+        cursor: pointer;
+    } 
+    .icons {
+        min-width: 80px;
+        cursor: pointer;
+    }
+}

@@ -1,10 +1,18 @@
 const express = require('express')
+const app = express()
+const session = require('express-session')
+app.use(session({
+    secret: 'my secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}))
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const usersRouter = require('./routes/users')
 const sequelize = require('./config/db')
 
-const app = express()
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cors())
 app.use('/users/', usersRouter)
@@ -23,6 +31,7 @@ if(true) {
 
 sequelize.sync().then(result => {
     console.log(result)
-}).catch(err =>
+}).catch(
+    err =>
     console.log(err)  
 )
