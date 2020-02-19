@@ -28,7 +28,7 @@
               </div>
               <div class="form-group">
                 <button @click="submitLoginForm()" class="btn btn-primary float-right">{{this.$root.$options['lang']['SUBMIT']}}</button>
-                <button @click="register()" class="btn btn-success">{{this.$root.$options['lang']['REGISTER']}}</button>
+                <button v-if="false" @click="register()" class="btn btn-success">{{this.$root.$options['lang']['REGISTER']}}</button>
               </div>
           </div>
           <div class="card-footer">
@@ -52,6 +52,7 @@ export default {
   },
   methods: {
     submitLoginForm() {
+        sessionStorage.removeItem('didi_token')
         let data = {};
         data['url'] = this.$root.$options.apiUrl['api2']
         data['username'] = this.username
@@ -59,6 +60,7 @@ export default {
 
         let i = this.$store.dispatch('postApi', data);
         i.then((result)=>{
+          if(result['data']['error']) return
           sessionStorage.setItem('didi_token', result['data']['token'])
           this.$router.push('Dashboard')
         })

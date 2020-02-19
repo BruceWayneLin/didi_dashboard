@@ -2,7 +2,8 @@ import axios from 'axios'
 
 const state = {
     login: true,
-    toggleSide: false
+    toggleSide: false,
+    busyLoading: false,
 }
 
 const getters = {
@@ -15,7 +16,10 @@ const actions = {
     },
     toggleNav: ({commit, state}, payload)=> {
         commit('toggleSideNav', payload)
-    }
+    },
+    busyLoading: ({commit, state}, payload)=> {
+        commit('busyLoading', payload)
+    },
 }
 
 const mutations = {
@@ -24,6 +28,9 @@ const mutations = {
     },
     toggleSideNav: (state, payload)=> {
         state['toggleSide'] = payload
+    },
+    busyLoading: (state, payload)=> {
+        state['busyLoading'] = payload
     }
 }
 

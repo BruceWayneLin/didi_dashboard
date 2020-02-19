@@ -16,11 +16,21 @@ const users = sequelize.define('users', {
     level : {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: '3'
+        defaultValue: '5'
     },
     password : {
         type: Sequelize.STRING,
         allowNull: false,
+    },
+    token : {
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: ''
+    },
+    active : {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     },
     createdAt: {
         type: Sequelize.DATE,

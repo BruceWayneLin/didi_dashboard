@@ -2,5 +2,10 @@
 @import './pages/app.scss';
 @import './components/login.scss';
 @import './components/register.scss';
+@import './components/tables/usersTable.scss';
 @import './UI/navbar/navbar.scss';
-@import './UI/navbar/sideNav.scss'
+@import './UI/navbar/sideNav.scss';
+@import './UI/burger.scss';
+@import './UI/modal.scss';
+@import './modals/addUser.scss';
+@import './modals/editUser.scss';

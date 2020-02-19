@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const {ATS, FTS} = require('../config/token')
 
-exports.me = (req, res, next) => { 
+exports.me = (req, res, next) => {
     if(!req.session.user) return res.status(403)
     res.json({
         user: req.session.user
@@ -22,6 +22,7 @@ exports.token = (req, res, next) => {
 exports.login = (req, res, next) => { 
     const username = req.body.username
     const password = req.body.password
+    
     users.findOne({
         where: {
             username: username
@@ -34,12 +35,21 @@ exports.login = (req, res, next) => {
                 password,
                 response.password
             ).then(result => {
-                const token = jwt.sign({user: response}, ATS, { expiresIn: '1m' }) 
-                res.json({
-                    token: `${token}`,
-                })
+                if(!result) return res.send({ error: '錯誤的密碼和使用者名稱'})
+                if(response) {
+                    response.token = ''
+                    const token = jwt.sign({user: response}, ATS, {expiresIn:'24h'})
+                    response.token = token.toString()
+                    response.save().then(()=>{
+                        res.json({
+                            token: `Bearer ${token.toString()}`,
+                        })
+                    })
+                } else {
+                    res.status(403).send({ error: '錯誤的密碼和使用者名稱'})
+                }
             }).catch(err => {
-                console.log('waterr', err)
+                res.json({ error: '沒有這個會員'})
             })
         }
     }).catch(err => {
@@ -87,4 +97,65 @@ exports.register = (req, res, next) => {
     } else {
         res.json({ error: '請正確填寫資料'})
     }
+}
+
+exports.users = (req, res, next) => {
+    users.findAll({
+        attributes: ['id', 'username', 'email', 'level'],
+        limit: 14
+    }).then((user)=>{
+        res.send({
+            'users': user
+        })
+    }).catch((err)=>{
+        res.json({error: err})
+    })
+}
+
+exports.deleteUser = (req, res, next) => {
+    users.destroy({
+        where: {
+            id: req.body.item.id
+        }
+    }).then((result)=>{
+        res.send({
+            success: '您已成功刪除'
+        })
+    }).catch((err)=>{
+        res.json({error: err})
+    })
+}
+
+exports.updateUser = (req, res, next) => {
+    users.findOne({
+        where: {
+            id: req.body.id
+        }
+    }).then((user) => {
+        if(req.body.password){
+            user.password = bcrypt.hashSync(req.body.password, 10)
+        }
+        if(req.body.level){
+            user.level = req.body.level
+        }
+        user.save()
+        res.send({
+            success: '您已成功更新'
+        })
+    }).catch((err) => {
+        res.send({err: err})
+    })
+    
+
+    // users.update({
+    //     where: {
+    //         id: req.body.item.id
+    //     }
+    // }).then((result)=>{
+    //     res.send({
+    //         success: '您已成功刪除'
+    //     })
+    // }).catch((err)=>{
+    //     res.json({error: err})
+    // })
 }

@@ -1,0 +1,13 @@
+.busyLoading {
+    @extend %customModalScss;
+    position: fixed;
+    .content {
+        background: transparent;
+        img {
+            width: 50%;
+            margin: auto;
+            display: block;
+            margin-top: 25%;
+        }
+    }
+}

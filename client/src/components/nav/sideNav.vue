@@ -1,18 +1,73 @@
 <template>
-    <div class="sideNav navbar-dark bg-dark">
+    <div class="sideNav navbar-dark bg-dark" v-if="toggleNavState">
         <ul>
             <li>
                 <p>{{me['username']}} {{returnLev(me['level'])}}</p>
                 <p>{{me['email']}}</p>
             </li>
             <li>
-                
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['USERSMANGE']}}
             </li>
             <li>
-                
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['RECOMMANGE']}}
             </li>
             <li>
-                
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['RECOMGROUP']}}
+            </li>
+            <li>
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['MARKET_TRADE_RECORD']}}
+            </li>
+            <li>
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['MARKET_TRADE_RESERVED_RECORD']}}
+            </li>
+            <li>
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['MARKET_TRADE_SHOP_BUYING_RECORD']}}
+            </li>
+            <li>
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['MAILBOX_RECORD']}}
+            </li>
+            <li>
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['INGOTS_RECORD']}}
+            </li>
+            <li>
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['TOOL_RECORD']}}
+            </li>
+            <li>
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['INTERGRAL_RECORD']}}
+            </li>
+            <li>
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['APPEAL_RECORD']}}
+            </li>
+            <li>
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['GAME_SETTING']}}
+            </li>
+            <li>
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['DAYS_MISSION']}}
+            </li>
+            <li>
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['ACHIEVEMENT']}}
+            </li>
+            <li>
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['DEPOSIT']}}
+            </li>
+            <li>
+                <font-awesome-icon icon="list-alt" />
+                {{this.$root.$options['lang']['REPORT']}}
             </li>
             <li>
                 <div @click="logout()">
@@ -33,12 +88,9 @@ export default {
         logout() {
             let data = {};
             data['url'] = this.$root.$options.apiUrl['api4']
-            data['token'] = sessionStorage.getItem('didi_token')
 
             let i = this.$store.dispatch('postApi', data);
             i.then((result)=>{
-                localStorage.removeItem('didi_token')
-                console.log(result)
                 if(result['data'].success) {
                     let msg = {}
                     msg['modalTitle'] = '成功'
@@ -88,6 +140,10 @@ export default {
     computed: {
         me() {
             return this.$store.state.info.me
+        },
+
+        toggleNavState() {
+            return this.$store.state.control.toggleSide
         }
     }
 }

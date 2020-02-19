@@ -1,17 +1,21 @@
 <template>
   <div class="navbarPc navbar-dark bg-dark">
         <div class="logo float-left">DD 打寶</div>
-        <div class="icons">link1</div>
-        <div class="icons">link2</div>
-        <div class="icons">link3</div>
+        <div class="icons d-none">tab1</div>
+        <div class="icons d-none">tab2</div>
+        <div class="icons"><burger/></div>
   </div>
 </template>
 
 <script>
+import burger from '@/components/UI/burger.vue'
 
 export default {
   name: 'navbarPc',
   props: {
+  },
+  components: {
+      burger
   },
   data() {
     return {

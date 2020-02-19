@@ -1,0 +1,7 @@
+.editUser {
+    @extend %customModalScss;
+    z-index: 88;
+    .content {
+        padding-top: 55px;
+    }
+}

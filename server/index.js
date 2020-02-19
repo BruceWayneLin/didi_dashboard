@@ -1,20 +1,22 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const session = require('express-session')
 app.use(session({
     secret: 'my secret',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: { secure: true }
 }))
 const bodyParser = require('body-parser')
-const cors = require('cors')
 const usersRouter = require('./routes/users')
 const sequelize = require('./config/db')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cors())
+app.options('*', cors())
+
 app.use('/users/', usersRouter)
 
 const port = process.env.PORT || 5000

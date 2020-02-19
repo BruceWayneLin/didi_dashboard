@@ -3,5 +3,8 @@ export default {
     api2: '/users/login',
     api3: '/users/register',
     api4: '/users/logout',
-    api5: '/users/token'
+    api5: '/users/token',
+    api6: '/users/users',
+    api7: '/users/delete/user',
+    api8: '/users/update/user'
 }
