@@ -1,0 +1,61 @@
+version: "3"
+
+services:
+  mysql: 
+    image: mysql:5.7
+    restart: always
+    container_name: mysql
+    volumes:
+      - db_data:/var/lib/mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: dashboard
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 1234
+      MYSQL_HOSTNAME: localhost
+    ports: 
+      - 3307:3306
+    expose:
+      - 3307
+    volumes:
+      - ./init.sql:/server/config/init.sql
+    networks:
+      - backend
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    links: 
+      - mysql:mysql
+    environment:
+      # PMA_ARBITRARY: 1
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_PASSWORD: 1234
+    restart: always
+    ports: 
+      - 8899:80
+    networks:
+      - backend
+
+  web-server:
+    container_name: web-server
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - 5000
+    ports:
+      - 5000:5000
+    links:
+      - mysql:mysql
+    depends_on:
+      - mysql
+    networks:
+      - backend
+
+volumes:
+  db_data: {}
+networks:
+  backend:
+ 

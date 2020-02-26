@@ -1,7 +1,15 @@
 const Sequelize = require('sequelize')
-const sequelize = new Sequelize('dashboard', 'root', 'aniki0720', {
+const sequelize = new Sequelize('dashboard', 'root', '1234', {
   dialect: 'mysql',
-  host: 'database-1.chbscvt4ogov.us-east-1.rds.amazonaws.com'
+  host: '172.26.0.1',
+  port: 3307,
+  socketPath: '/var/run/mysqld/mysqld.sock',
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
+//   host: 'database-1.chbscvt4ogov.us-east-1.rds.amazonaws.com'
 })
 
 module.exports = sequelize

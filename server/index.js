@@ -30,10 +30,11 @@ if(true) {
     
     app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'))
 }
-
-sequelize.sync().then(result => {
-    console.log(result)
-}).catch(
-    err =>
-    console.log(err)  
-)
+setTimeout(()=>{
+    sequelize.sync().then(result => {
+        console.log(result)
+    }).catch(
+        err =>
+        console.log(err)  
+    )
+}, 13000)

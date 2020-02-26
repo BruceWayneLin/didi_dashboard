@@ -1,5 +1,4 @@
 import axios from 'axios'
-import session from 'express-session'
 const modal = require('../../alertModal')
 const includeStates = require('../../store/modules/control')
 
