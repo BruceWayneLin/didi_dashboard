@@ -7,18 +7,17 @@ services:
     container_name: mysql
     volumes:
       - db_data:/var/lib/mysql
+      - ./init.sql:/server/config/init.sql
     environment: 
-      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: didisuper
       MYSQL_DATABASE: dashboard
       MYSQL_USER: root
-      MYSQL_PASSWORD: 1234
+      MYSQL_PASSWORD: didisuper
       MYSQL_HOSTNAME: localhost
     ports: 
       - 3307:3306
     expose:
       - 3307
-    volumes:
-      - ./init.sql:/server/config/init.sql
     networks:
       - backend
 
@@ -31,7 +30,7 @@ services:
       # PMA_ARBITRARY: 1
       PMA_HOST: mysql
       PMA_PORT: 3306
-      PMA_PASSWORD: 1234
+      PMA_PASSWORD: didisuper
     restart: always
     ports: 
       - 8899:80
@@ -53,6 +52,14 @@ services:
       - mysql
     networks:
       - backend
+
+
+    # command: ["./wait-for-it.sh", "172.26.0.1:3307", "--", "sh", "run.sh"]
+    # environment: 
+    #   - DB_HOST=172.26.0.1
+    #   - DB_USER=root
+    #   - DB_PASS=1234
+    #   - NODE_ENV=production
 
 volumes:
   db_data: {}

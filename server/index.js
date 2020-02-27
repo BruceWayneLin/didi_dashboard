@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const session = require('express-session')
+const insertInitUser = require('../server/config/insertInitPerson/insertInitPerson')
 app.use(session({
     secret: 'my secret',
     resave: false,
@@ -30,11 +31,33 @@ if(true) {
     
     app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'))
 }
-setTimeout(()=>{
-    sequelize.sync().then(result => {
-        console.log(result)
-    }).catch(
-        err =>
-        console.log(err)  
-    )
-}, 13000)
+
+
+let retries = 5 
+while (retries) {
+    try {
+        sequelize.sync().then(result => {
+
+            insertInitUser()
+
+            console.log(result)
+        }).catch(
+            err =>
+            console.log(err)  
+        )
+        break;
+    } catch(e) {
+        retries -= 1
+        console.log(retries)
+        new Promise(res => setTimeout(res, 10000))
+    }
+}
+
+// setTimeout(()=>{
+//     sequelize.sync().then(result => {
+//         console.log(result)
+//     }).catch(
+//         err =>
+//         console.log(err)  
+//     )
+// }, 13000)

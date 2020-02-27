@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize')
-const sequelize = new Sequelize('dashboard', 'root', '1234', {
+const sequelize = new Sequelize('dashboard', 'root', 'didisuper', {
   dialect: 'mysql',
-  host: '172.26.0.1',
+//    host: 'localhost',
+  host: '172.27.0.1',
   port: 3307,
   socketPath: '/var/run/mysqld/mysqld.sock',
   pool: {

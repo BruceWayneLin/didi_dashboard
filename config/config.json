@@ -1,25 +1,25 @@
 {
   "development": {
     "username": "root",
-    "password": "aniki0720",
+    "password": "didisuper",
     "database": "dashboard",
-    "host": "database-1.chbscvt4ogov.us-east-1.rds.amazonaws.com",
+    "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "port": "3307"
   },
   "test": {
     "username": "root",
-    "password": "aniki0720",
+    "password": "didisuper",
     "database": "dashboard",
-    "host": "database-1.chbscvt4ogov.us-east-1.rds.amazonaws.com",
+    "host": "mysql",
     "dialect": "mysql",
     "operatorsAliases": false
   },
   "production": {
     "username": "root",
-    "password": "aniki0720",
+    "password": "didisuper",
     "database": "dashboard",
-    "host": "database-1.chbscvt4ogov.us-east-1.rds.amazonaws.com",
+    "host": "mysql",
     "dialect": "mysql",
     "operatorsAliases": false
   }

@@ -23,7 +23,7 @@ const users = sequelize.define('users', {
         allowNull: false,
     },
     token : {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: true,
         defaultValue: ''
     },
