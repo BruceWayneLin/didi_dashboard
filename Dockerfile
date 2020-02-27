@@ -4,7 +4,7 @@ COPY . ./
 RUN cd ./ && npm install
 RUN cd ./client
 RUN npm install
-RUN sudo npm install -g @vue/cli
+# RUN npm install -g @vue/cli
 RUN npm rebuild node-sass --force
 RUN npm run build
 EXPOSE 5000
