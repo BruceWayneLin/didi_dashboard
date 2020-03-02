@@ -1,6 +1,22 @@
 version: "2"
 
 services:
+  nginx: 
+    container_name: nginx
+    build: 
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    links:
+      - web-server
+    depends_on:
+      - web-server
+      - phpmyadmin
+      - mysql
+    ports: 
+      - 8888:80
+    networks:
+      - vpn
+
   mysql: 
     image: mysql:5.7
     restart: always
@@ -27,7 +43,6 @@ services:
     links: 
       - mysql:mysql
     environment:
-      # PMA_ARBITRARY: 1
       PMA_HOST: mysql
       PMA_PORT: 3306
       PMA_PASSWORD: 1234
@@ -52,17 +67,13 @@ services:
       - mysql
     networks:
       - vpn
-
-
-    # command: ["./wait-for-it.sh", "172.26.0.1:3307", "--", "sh", "run.sh"]
-    # environment: 
-    #   - DB_HOST=172.26.0.1
-    #   - DB_USER=root
-    #   - DB_PASS=1234
-    #   - NODE_ENV=production
+    environment: 
+      - NODE_DB_HOST=172.20.0.1
+      - NODE_ENV=production
 
 volumes:
   db_data: {}
+  
 networks:
   vpn:
     ipam:
