@@ -10,19 +10,34 @@
                 </div>
             </div>
             <div class="row">
-                <b-table striped :items="items" :fields="fields" dark="dark" >
+                <b-table striped :items="items" :fields="fields" dark="dark" :per-page="perPage" :current-page="currentPage">
                     <template v-slot:cell(level)="data">
                             {{ level(data['item']['level']) }}
                     </template>
                     <template v-slot:cell(delete)="data">
-                            <button @click="deleteMember(data['item'])" class="btn btn-danger ml-2" v-if="me['level'] < data['item']['level']">
+                            <button @click="deleteMember(data['item'])" class="btn btn-primary ml-2" v-if="me['level'] < data['item']['level']">
                                 <font-awesome-icon icon="trash" />
                             </button>
                             <button @click="edit(data['item'])" class="btn btn-success ml-2" v-if="me['level'] < data['item']['level']">
                                 <font-awesome-icon icon="pen" />
                             </button>
+                             <button @click="toggle(data['item'])" class="btn btn-danger ml-2" v-if="(me['level'] < data['item']['level']) && !data['item']['active']">
+                                <font-awesome-icon icon="user-times" />
+                            </button>
+                            <button @click="toggle(data['item'])" class="btn btn-info ml-2" v-if="(me['level'] < data['item']['level']) && data['item']['active']">
+                                 <font-awesome-icon icon="user" />
+                            </button>
                     </template>
-                </b-table>       
+                </b-table> 
+                <div class="mt-3 overflow-auto container">
+                    <b-pagination
+                    v-model="currentPage"
+                    :total-rows="rows"
+                    :per-page="perPage"
+                    aria-controls="my-table"
+                    align="right"
+                    ></b-pagination>
+                </div> 
             </div>
         </div>
     </div>
@@ -44,6 +59,8 @@ export default {
     },
     data() {
         return {
+            currentPage: 1,
+            perPage: 7,
             items: [],
             fields: [
                 {
@@ -78,6 +95,28 @@ export default {
         edit(item) {
             this.editUser = item
             this.$store.dispatch('editUser', true)
+        },
+        toggle(item) {
+            let data = {};
+            data['url'] = this.$root.$options.apiUrl['api8']
+            data['username'] = item.username
+            data['password'] = item.password
+            data['email'] = item.email
+            data['level'] = item.level
+            data['id'] = item.id
+            data['active'] = !item.active
+            let i = this.$store.dispatch('postApi', data);
+            i.then((result)=>{
+                if(result['data'].success) {
+                    let msg = {}
+                    msg['modalTitle'] = '成功'
+                    msg['modalText'] = result['data'].success
+                    msg['modalIcon'] = 'success',
+                    msg['modalButtonText'] = '確定',
+                    msg['modelRedirectUrl'] = '/Dashboard'
+                    modal.modal(msg)
+                }
+            })
         }, 
         deleteUser(item) {
             let data = {};
@@ -157,6 +196,9 @@ export default {
         },
         language() {
             return language['selectLang']
+        },
+        rows() {
+            return this.items.length
         }
     },
     async mounted() {

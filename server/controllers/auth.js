@@ -36,6 +36,7 @@ exports.login = (req, res, next) => {
                 response.password
             ).then(result => {
                 if(!result) return res.send({ error: '錯誤的密碼和使用者名稱'})
+                if(!response.active) return res.send({ error: '您的會員未開通，請聯絡後台最高管理員'})
                 if(response) {
                     response.token = ''
                     const token = jwt.sign({user: response}, ATS, {expiresIn:'24h'})
@@ -101,8 +102,7 @@ exports.register = (req, res, next) => {
 
 exports.users = (req, res, next) => {
     users.findAll({
-        attributes: ['id', 'username', 'email', 'level'],
-        limit: 14
+        attributes: ['id', 'username', 'email', 'level', 'active'],
     }).then((user)=>{
         res.send({
             'users': user
@@ -138,6 +138,7 @@ exports.updateUser = (req, res, next) => {
         if(req.body.level){
             user.level = req.body.level
         }
+        user.active = req.body.active
         user.save()
         res.send({
             success: '您已成功更新'
