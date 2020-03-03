@@ -18,17 +18,16 @@ services:
       - vpn
 
   mysql: 
-    image: mysql:5.7
+    image: mysql:8
     restart: always
     container_name: mysql
     volumes:
-      - db_data:/var/lib/mysql
-      - ./init.sql:/server/config/init.sql
+      - ./server/config/init.sql:/server/config/init.sql
     environment: 
-      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: didiSuper%4F
       MYSQL_DATABASE: dashboard
       MYSQL_USER: root
-      MYSQL_PASSWORD: 1234
+      MYSQL_PASSWORD: didiSuper%4F
       MYSQL_HOSTNAME: localhost
     ports: 
       - 3307:3306
@@ -45,7 +44,7 @@ services:
     environment:
       PMA_HOST: mysql
       PMA_PORT: 3306
-      PMA_PASSWORD: 1234
+      PMA_PASSWORD: didiSuper%4F
     restart: always
     ports: 
       - 8899:80
@@ -70,9 +69,6 @@ services:
     environment: 
       - NODE_DB_HOST=172.20.0.1
       - NODE_ENV=production
-
-volumes:
-  db_data: {}
   
 networks:
   vpn:

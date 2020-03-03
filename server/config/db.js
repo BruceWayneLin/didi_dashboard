@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const sequelize = new Sequelize('dashboard', 'root', '1234', {
+const sequelize = new Sequelize('dashboard', 'root', 'didiSuper%4F', {
   dialect: 'mysql',
   host: process.env.NODE_DB_HOST,
   port: 3307,
