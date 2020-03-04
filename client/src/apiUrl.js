@@ -6,5 +6,8 @@ export default {
     api5: '/users/token',
     api6: '/users/users',
     api7: '/users/delete/user',
-    api8: '/users/update/user'
+    api8: '/users/update/user',
+    // didi
+    api9: '/didi/member'
+
 }

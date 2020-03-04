@@ -21,7 +21,8 @@ const lang = {
         'CANCEL': '取消',
         'ACTIONS': '動作',
         'EDITUSER': '編輯管理員',
-        'USERSMANGE': '會員管理',
+        'DASHBOARD_USERSMANGE': '報表平台會員管理',
+        'DIDIUSERSMANGE': '滴滴會員管理',
         'RECOMMANGE': '推薦管理(好友)',
         'RECOMGROUP': '推薦管理(社群)',
         'MARKET_TRADE_RECORD': '市集-商店交易紀錄',
@@ -36,7 +37,14 @@ const lang = {
         'DAYS_MISSION': '每日任務',
         'ACHIEVEMENT': '成就',
         'DEPOSIT': '儲值',
-        'REPORT': '報表'
+        'REPORT': '報表',
+        'MEMBER_ACCOUNT': '會員帳號',
+        'NICKNAME': '暱稱',
+        'REAL_NAME':'真實姓名',
+        'RECOMMEND_ACCOUNT': '推薦人帳號',
+        'CREATE_DATE': '創建日期',
+        'STATUS': '狀態',
+        'INSPECT': '查看'
     }
 }
 

@@ -3,6 +3,7 @@ const app = express()
 const cors = require('cors')
 const session = require('express-session')
 const insertInitUser = require('../server/config/insertInitPerson/insertInitPerson')
+require('dotenv').config()
 app.use(session({
     secret: 'my secret',
     resave: false,
@@ -11,7 +12,9 @@ app.use(session({
 }))
 const bodyParser = require('body-parser')
 const usersRouter = require('./routes/users')
-const sequelize = require('./config/db')
+const didiRouter = require('./routes/didi')
+
+const DB = require('./config/db')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -19,6 +22,7 @@ app.use(cors())
 app.options('*', cors())
 
 app.use('/users/', usersRouter)
+app.use('/didi/', didiRouter)
 
 const port = process.env.PORT || 5000
 
@@ -36,10 +40,14 @@ if(true) {
 let retries = 5 
 while (retries) {
     try {
-        sequelize.sync().then(result => {
-
+        DB.sequelize.sync().then(result => {
             insertInitUser()
-
+            console.log(result)
+        }).catch(
+            err =>
+            console.log(err)  
+        )
+        DB.didiDB.sync().then(result => {
             console.log(result)
         }).catch(
             err =>

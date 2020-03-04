@@ -16,13 +16,14 @@ export default {
     login,
     register
   },
+  methods: {
+  },
   computed: {
     loginState() {
       return this.$store.state.control.login
     }
   },
-  mounted() {
-    
+  async mounted() {
   }
 }
 </script>

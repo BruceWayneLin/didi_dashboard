@@ -29,6 +29,17 @@
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                         <span class="input-group-text">
+                            <font-awesome-icon icon="users" />
+                        </span>
+                        </div>
+                        <select name="active" v-model="active" class="form-control">
+                            <option value="true">啟用</option>
+                            <option value="false">停用</option>
+                        </select>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text">
                             <font-awesome-icon icon="id-badge" />
                         </span>
                         </div>
@@ -40,6 +51,7 @@
                             <option v-if="me['level'] < 5" value="5">百姓</option>
                         </select>
                     </div>
+                    
                     <div class="form-group text-center">
                         <button class="btn btn-danger float-left" @click="close()">
                             {{this.$root.$options['lang']['CLOSE']}}
@@ -70,7 +82,8 @@ export default {
         password: '',
         email: '',
         level: '',
-        id: ''
+        id: '',
+        active: ''
     }
   },
   methods: {
@@ -80,6 +93,7 @@ export default {
             this.email = this.user.email
             this.level = this.user.level
             this.id = this.user.id
+            this.active = this.user.active
         },
         close() {
             this.$store.dispatch('editUser', false)
@@ -91,6 +105,7 @@ export default {
             data['password'] = this.password
             data['email'] = this.email
             data['level'] = this.level
+            data['active'] = this.active
             data['id'] = this.id
             let i = this.$store.dispatch('postApi', data);
             i.then((result)=>{

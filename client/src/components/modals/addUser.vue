@@ -70,7 +70,31 @@ export default {
         },
        submitRegisterForm() {
             let data = {};
+            let msg = {}
+            msg['modalTitle'] = '必填'
+            msg['modalIcon'] = 'error',
+            msg['modalButtonText'] = '確定'
             data['url'] = this.$root.$options.apiUrl['api3']
+            if(!this.username) {
+               msg['modalText'] = '會員名稱是必填欄位'
+               modal.modal(msg)
+               return
+            }
+            if(!this.password) {
+               msg['modalText'] = '密碼是必填欄位'
+               modal.modal(msg)
+               return
+            }
+            if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email))) {
+               msg['modalText'] = '請填正確信箱格式'
+               modal.modal(msg)
+               return
+            }
+            if(!this.email) {
+               msg['modalText'] = '信箱是必填欄位'
+               modal.modal(msg)
+               return
+            }
             data['username'] = this.username
             data['password'] = this.password
             data['email'] = this.email
@@ -78,7 +102,6 @@ export default {
             let i = this.$store.dispatch('postApi', data);
             i.then((result)=>{
                 if(result['data'].success) {
-                    let msg = {}
                     msg['modalTitle'] = '成功'
                     msg['modalText'] = result['data'].success
                     msg['modalIcon'] = 'success',

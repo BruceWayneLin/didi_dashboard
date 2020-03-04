@@ -9,6 +9,9 @@
     ul {
         list-style-type: none;
         li {
+            .badge_icon {
+                width: 25px;
+            }
             &:hover {
                 background: gray;
             }

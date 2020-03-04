@@ -1,6 +1,6 @@
 <template>
   <div class="navbarMb navbar-dark bg-dark">
-        <div class="logo float-left">DD 打寶</div>
+        <div class="logo float-left" @click="redirect('Dashboard')">DD 打寶</div>
         <burger />
   </div>
 </template>
@@ -20,6 +20,9 @@ export default {
     }
   },
   methods: {
+    redirect(url) {
+      this.$router.push(url)
+    }
   },
   computed:  {
   },

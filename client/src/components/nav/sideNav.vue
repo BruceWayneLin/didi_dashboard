@@ -2,12 +2,24 @@
     <div class="sideNav navbar-dark bg-dark" v-if="toggleNavState">
         <ul>
             <li>
-                <p>{{me['username']}} {{returnLev(me['level'])}}</p>
+                <p>{{me['username']}}</p>
                 <p>{{me['email']}}</p>
+                <div>
+                    <img v-if="me['level'] <= 1" class="badge_icon" src="@/assets/images/badges/1.svg" alt="">
+                    <img v-if="me['level'] <= 2" class="badge_icon" src="@/assets/images/badges/2.svg" alt="">
+                    <img v-if="me['level'] <= 3" class="badge_icon" src="@/assets/images/badges/3.svg" alt="">
+                    <img v-if="me['level'] <= 4" class="badge_icon" src="@/assets/images/badges/4.svg" alt="">
+                    <img v-if="me['level'] <= 5" class="badge_icon" src="@/assets/images/badges/5.svg" alt="">
+                    {{returnLev(me['level'])}}
+                </div>
             </li>
-            <li>
-                <font-awesome-icon icon="list-alt" />
-                {{this.$root.$options['lang']['USERSMANGE']}}
+            <!-- <li @click="redirect('Dashboard')">
+                <font-awesome-icon icon="list-alt"/>
+                {{this.$root.$options['lang']['DASHBOARD_USERSMANGE']}}
+            </li> -->
+            <li @click="redirect('DidiMember')">
+                <font-awesome-icon icon="list-alt"/>
+                {{this.$root.$options['lang']['DIDIUSERSMANGE']}}
             </li>
             <li>
                 <font-awesome-icon icon="list-alt" />
@@ -135,6 +147,9 @@ export default {
                     break
                 default:
             }
+        },
+        redirect(url) {
+            this.$router.push(url)
         }
     },
     computed: {

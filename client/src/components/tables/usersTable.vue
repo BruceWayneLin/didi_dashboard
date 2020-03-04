@@ -10,9 +10,14 @@
                 </div>
             </div>
             <div class="row">
-                <b-table striped :items="items" :fields="fields" dark="dark" :per-page="perPage" :current-page="currentPage">
+                <b-table responsive striped :items="items" :fields="fields" dark="dark" :per-page="perPage" :current-page="currentPage">
                     <template v-slot:cell(level)="data">
-                            {{ level(data['item']['level']) }}
+                        {{ level(data['item']['level']) }}
+                        <img v-if="data['item']['level'] <= 1" class="badge_icon" src="@/assets/images/badges/1.svg" alt="">
+                        <img v-if="data['item']['level'] <= 2" class="badge_icon" src="@/assets/images/badges/2.svg" alt="">
+                        <img v-if="data['item']['level'] <= 3" class="badge_icon" src="@/assets/images/badges/3.svg" alt="">
+                        <img v-if="data['item']['level'] <= 4" class="badge_icon" src="@/assets/images/badges/4.svg" alt="">
+                        <img v-if="data['item']['level'] <= 5" class="badge_icon" src="@/assets/images/badges/5.svg" alt="">
                     </template>
                     <template v-slot:cell(delete)="data">
                             <button @click="deleteMember(data['item'])" class="btn btn-primary ml-2" v-if="me['level'] < data['item']['level']">
