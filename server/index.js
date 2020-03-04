@@ -42,13 +42,14 @@ while (retries) {
     try {
         DB.sequelize.sync().then(result => {
             insertInitUser()
-            console.log(result)
+            console.log('local db connected!', result)
         }).catch(
             err =>
             console.log(err)  
         )
+        console.log(process.env)
         DB.didiDB.sync().then(result => {
-            console.log(result)
+            console.log('didiDB connected!', result)
         }).catch(
             err =>
             console.log(err)  

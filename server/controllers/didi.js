@@ -12,5 +12,7 @@ exports.member = (req, res, next) => {
             })
         });
         res.send(returnArra)
+    }).catch((e)=>{
+        console.log(e)
     })
 }
