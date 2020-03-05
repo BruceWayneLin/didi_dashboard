@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 require('dotenv').config()
-const sequelize = new Sequelize('dashboard', 'root', 'didiSuper%4F', {
+const sequelize = new Sequelize('dashboard', process.env.NODE_DB_UESR, 'didiSuper%4F', {
   dialect: 'mysql',
   host: process.env.NODE_DB_HOST,
   port: 3307,
