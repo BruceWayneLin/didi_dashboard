@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 services:
   nginx: 
@@ -64,13 +64,17 @@ services:
       - mysql:mysql
     depends_on:
       - mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 5
     networks:
       - vpn
     environment: 
       - NODE_DB_HOST=172.20.0.1
       - NODE_ENV=production
       - DB_PASS=didiSuper%4F
-      - DIDI_DB_HOST=3.112.22.31
+      - DIDI_DB_HOST=170.32.0.196
       - DIDI_DB_USER=newcatuser
       - DIDI_DB_PASS=newcatpwd
       - DIDI_DB_PORT=6033
