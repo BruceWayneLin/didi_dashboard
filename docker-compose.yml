@@ -21,15 +21,16 @@ services:
     image: mysql:8
     restart: always
     container_name: mysql
-    volumes:
-      - ./server/config/init.sql:/docker-entrypoint-initdb.d/init.sql
+    # volumes:
+    #   - ./server/config/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
       retries: 5
     environment: 
       MYSQL_ROOT_PASSWORD: didiSuper%4F
-      MYSQL_USER: root
+      MYSQL_DATABASE: dashboard
+      MYSQL_USER: admin
       MYSQL_PASSWORD: didiSuper%4F
 
     ports: 
@@ -79,7 +80,7 @@ services:
       - DIDI_DB_USER=newcatuser
       - DIDI_DB_PASS=newcatpwd
       - DIDI_DB_PORT=6033
-      - NODE_DB_UESR=root
+      - NODE_DB_UESR=admin
   
 networks:
   vpn:
