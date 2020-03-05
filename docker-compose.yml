@@ -30,9 +30,9 @@ services:
     environment: 
       MYSQL_ROOT_PASSWORD: didiSuper%4F
       MYSQL_DATABASE: dashboard
-      MYSQL_USER: root
+      MYSQL_USER: admin
       MYSQL_PASSWORD: didiSuper%4F
-      MYSQL_HOSTNAME: localhost
+      
     ports: 
       - 3307:3306
     expose:
