@@ -78,7 +78,7 @@ services:
       - DIDI_DB_USER=newcatuser
       - DIDI_DB_PASS=newcatpwd
       - DIDI_DB_PORT=6033
-      - NODE_DB_UESR=admin
+      - NODE_DB_UESR=root
   
 networks:
   vpn:
