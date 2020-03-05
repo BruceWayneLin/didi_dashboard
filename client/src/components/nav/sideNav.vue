@@ -140,10 +140,10 @@ export default {
                     return '士官'
                     break
                 case '4':
-                    return '士兵'
+                    return '上兵'
                     break
                 case '5':
-                    return '百姓'
+                    return '一兵'
                     break
                 default:
             }

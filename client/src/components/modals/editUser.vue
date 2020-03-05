@@ -47,8 +47,8 @@
                             <option v-if="me['level'] < 1" value="1">將軍</option>
                             <option v-if="me['level'] < 2" value="2">校尉</option>
                             <option v-if="me['level'] < 3" value="3">士官</option>
-                            <option v-if="me['level'] < 4" value="4">士兵</option>
-                            <option v-if="me['level'] < 5" value="5">百姓</option>
+                            <option v-if="me['level'] < 4" value="4">上兵</option>
+                            <option v-if="me['level'] < 5" value="5">一兵</option>
                         </select>
                     </div>
                     
