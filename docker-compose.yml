@@ -71,7 +71,7 @@ services:
     networks:
       - vpn
     environment: 
-      - NODE_DB_HOST=127.0.0.1
+      - NODE_DB_HOST=172.20.0.1
       - NODE_ENV=production
       - DB_PASS=didiSuper%4F
       - DIDI_DB_HOST=170.32.0.196
