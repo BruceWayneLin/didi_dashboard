@@ -18,7 +18,7 @@ services:
       - vpn
 
   mysql: 
-    image: mysql:5.7
+    image: mysql:8
     restart: always
     container_name: mysql
     volumes:
@@ -30,7 +30,7 @@ services:
     environment: 
       MYSQL_ROOT_PASSWORD: didiSuper%4F
       MYSQL_DATABASE: dashboard
-      MYSQL_USER: admin
+      MYSQL_USER: root
       MYSQL_PASSWORD: didiSuper%4F
 
     ports: 
@@ -78,7 +78,7 @@ services:
       - DIDI_DB_USER=newcatuser
       - DIDI_DB_PASS=newcatpwd
       - DIDI_DB_PORT=6033
-      - NODE_DB_UESR=admin
+      - NODE_DB_UESR=root
   
 networks:
   vpn:
