@@ -71,7 +71,7 @@ services:
     networks:
       - vpn
     environment: 
-      - NODE_DB_HOST=172.20.0.1
+      - NODE_DB_HOST=172.20.0.4
       - NODE_ENV=production
       - DB_PASS=didiSuper%4F
       - DIDI_DB_HOST=170.32.0.196
@@ -85,7 +85,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 172.20.0.1/16
+        - subnet: 172.20.0.4/16
       
       
         
