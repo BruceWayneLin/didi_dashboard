@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const state = {
+    userTableItems:[],
     me: {}
 }
 
@@ -12,11 +13,17 @@ const actions = {
     updateme({ commit }, payload) {
         commit('updateme', payload)
     },
+    updateUserItems({ commit }, payload) {
+        commit('updateUserItems', payload)
+    },
 }
 
 const mutations = {
     updateme(state, payload) { 
         state['me'] = payload
+    },
+    updateUserItems(state, payload) { 
+        state['userTableItems'] = payload
     }
 }
 

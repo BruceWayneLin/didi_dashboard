@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Dashboard from '../views/Dashboard.vue'
-import DidiMember from '../views/DidiMember.vue'
 
 Vue.use(VueRouter)
 function loadView(view) {
@@ -24,6 +21,11 @@ const routes = [
     path: '/DidiMember',
     name: 'DidiMember',
     component: loadView('DidiMember')
+  },
+  {
+    path: '/DidiMemberEdit',
+    name: 'DidiMemberEdit',
+    component: loadView('DidiMemberEdit')
   }
 ]
 

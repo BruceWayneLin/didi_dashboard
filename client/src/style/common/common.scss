@@ -395,7 +395,7 @@ body, html {
     z-index: 99999999999999;
     overflow: hidden;
     .content {
-        overflow: hidden;    
+        overflow: scroll;    
         max-width: 500px;
         width: 80%;
         // height: 500px;
@@ -403,13 +403,14 @@ body, html {
         @include radius(12px);
         min-height: 500px;
         position: fixed;
-        top: 10%;
-        margin: 5% auto;
+        top: 0;
+        margin: auto;
         left: 0;
         right: 0;
         background: white;
         width: 50%;
         min-width: 360px;
+        height: 100vh;
     }
     .cancel {
         width: 25px;
@@ -419,4 +420,16 @@ body, html {
 
 .table {
     margin-top: 40px;
+}
+
+#del-icon {
+    position: absolute;
+    z-index: 111;
+    right: 0;
+    top: 0;
+}
+
+.mock-a {
+    color: #3b88fd;
+    cursor: pointer
 }

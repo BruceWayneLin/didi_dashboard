@@ -1,11 +1,76 @@
 <template>
     <div class="didiMemberTable">
-        <div class="container">
+        <memberDetail v-if="detailModal"/>
+        <didiMemberFilter />
+        <div class="container-fluid">
             <div class="row">
-                <b-table striped responsive :items="items" :fields="fields" :per-page="perPage" :current-page="currentPage">
+                <b-table striped stacked 
+                    :items="items" 
+                    :fields="fields" 
+                    :per-page="perPage" 
+                    :current-page="currentPage"
+                    class="d-sm-none"
+                >
                     <template v-slot:cell(status)="data">
-                        <font-awesome-icon icon="user-times" v-if="data['item']['status'] == 0" />
-                        <font-awesome-icon icon="user"  v-if="data['item']['status'] == 1" />
+                        <div v-if="data['item']['status'] == 0">
+                            啟用
+                            <font-awesome-icon icon="user-times"  />
+                        </div>
+                        <div v-if="data['item']['status'] == 1">
+                            停用
+                            <font-awesome-icon icon="user" />
+                        </div>
+                    </template>
+                    <template v-slot:cell(manipulation)="data">
+                        <div class="m-1">
+                            <font-awesome-icon class="m-1" icon="eye" />
+                            <font-awesome-icon class="m-1" icon="users" />
+                            <font-awesome-icon class="m-1" icon="pencil-alt" @click="editUser(data)"/>
+                        </div>
+                        <div class="btn btn-success m-1">
+                            物品
+                        </div>
+                        <div class="btn btn-primary m-1">
+                            裝備倉
+                        </div>
+                        <div class="btn btn-info m-1">
+                            道具/裝備發放
+                        </div>
+                    </template>
+                </b-table> 
+                
+                <b-table striped responsive 
+                    :items="items" 
+                    :fields="fields" 
+                    :per-page="perPage" 
+                    :current-page="currentPage"
+                    class="d-none d-sm-block"
+                >
+                    <template v-slot:cell(status)="data">
+                        <div v-if="data['item']['status'] == 0">
+                            啟用
+                            <font-awesome-icon icon="user-times"  />
+                        </div>
+                        <div v-if="data['item']['status'] == 1">
+                            停用
+                            <font-awesome-icon icon="user" />
+                        </div>
+                    </template>
+                    <template v-slot:cell(manipulation)="data">
+                        <div class="m-1">
+                            <font-awesome-icon class="m-1" icon="eye" />
+                            <font-awesome-icon class="m-1" icon="users" />
+                            <font-awesome-icon class="m-1" icon="pencil-alt" @click="editUser(data)"/>
+                        </div>
+                        <div class="btn btn-success m-1">
+                            物品
+                        </div>
+                        <div class="btn btn-primary m-1">
+                            裝備倉
+                        </div>
+                        <div class="btn btn-info m-1">
+                            道具/裝備發放
+                        </div>
                     </template>
                 </b-table> 
                 <div class="mt-3 overflow-auto container">
@@ -26,16 +91,20 @@
 const modal = require('../../alertModal')
 const swal = require('sweetalert2')
 const language = require('../../language')
+import memberDetail from '@/components/didiMember/memberDetail'
+import didiMemberFilter from '@/components/didiMember/didiMemberFilter'
 
 export default {
     name: 'didiMemberTable',
     components: {
+        memberDetail,
+        didiMemberFilter
     },
     data() {
         return {
             currentPage: 1,
             perPage: 7,
-            items: [],
+            // items: [],
             fields: [
                 {
                     ID: {
@@ -68,8 +137,20 @@ export default {
                     }
                 },
                 {
+                    reccomend_nickname: {
+                        label: this.$root.$options.lang['RECOMMEND_NICKNAME'],
+                        sortable: true
+                    }
+                },
+                {
                     create_date: {
                         label: this.$root.$options.lang['CREATE_DATE'],
+                        sortable: true
+                    }
+                },
+                {
+                    capital_state: {
+                        label: this.$root.$options.lang['CAPITAL_STATUS'],
                         sortable: true
                     }
                 },
@@ -80,16 +161,26 @@ export default {
                     }
                 },
                 {
-                    inspect: {
-                        label: this.$root.$options.lang['INSPECT'],
-                        sortable: true
+                    manipulation: {
+                        label: this.$root.$options.lang['MANIPULATION'],
+                        sortable: false
                     }
                 },
+                // {
+                //     inspect: {
+                //         label: this.$root.$options.lang['INSPECT'],
+                //         sortable: true
+                //     }
+                // },
 
             ]
         }
     },
     methods: {
+        editUser(data) {
+            this.$router.push('didiMemberEdit')
+            this.$store.dispatch('detailUser', data)
+        },
         getUser() {
             let data = {}
             data['url'] = this.$root.$options.apiUrl['api9']
@@ -99,12 +190,17 @@ export default {
         }
     },
     computed: {
+        items() {
+            return this.$store.state.info.userTableItems
+        },
         rows() {
             return this.items.length
+        },
+        detailModal() {
+            return this.$store.state.modals.detailUser
         }
     },
     async mounted() {
-        await this.getUser()
     }
 }
 </script>

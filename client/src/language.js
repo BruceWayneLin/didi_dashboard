@@ -44,7 +44,10 @@ const lang = {
         'RECOMMEND_ACCOUNT': '推薦人帳號',
         'CREATE_DATE': '創建日期',
         'STATUS': '狀態',
-        'INSPECT': '查看'
+        'INSPECT': '查看',
+        'RECOMMEND_NICKNAME': '推薦人暱稱',
+        'CAPITAL_STATUS': '資金異動',
+        'MANIPULATION': '操作'
     }
 }
 

@@ -10,7 +10,49 @@
                 </div>
             </div>
             <div class="row">
-                <b-table responsive striped :items="items" :fields="fields" dark="dark" :per-page="perPage" :current-page="currentPage">
+                <b-table 
+                    stacked 
+                    striped 
+                    :items="items" 
+                    :fields="fields" 
+                    dark="dark" 
+                    :per-page="perPage" 
+                    :current-page="currentPage"
+                    class="d-sm-none"
+                >
+                    <template v-slot:cell(level)="data">
+                        {{ level(data['item']['level']) }}
+                        <img v-if="data['item']['level'] <= 1" class="badge_icon" src="@/assets/images/badges/1.svg" alt="">
+                        <img v-if="data['item']['level'] <= 2" class="badge_icon" src="@/assets/images/badges/2.svg" alt="">
+                        <img v-if="data['item']['level'] <= 3" class="badge_icon" src="@/assets/images/badges/3.svg" alt="">
+                        <img v-if="data['item']['level'] <= 4" class="badge_icon" src="@/assets/images/badges/4.svg" alt="">
+                        <img v-if="data['item']['level'] <= 5" class="badge_icon" src="@/assets/images/badges/5.svg" alt="">
+                    </template>
+                    <template v-slot:cell(delete)="data">
+                            <button @click="deleteMember(data['item'])" class="btn btn-primary ml-2" v-if="me['level'] < data['item']['level']">
+                                <font-awesome-icon icon="trash" />
+                            </button>
+                            <button @click="edit(data['item'])" class="btn btn-success ml-2" v-if="me['level'] < data['item']['level']">
+                                <font-awesome-icon icon="pen" />
+                            </button>
+                             <button @click="toggle(data['item'])" class="btn btn-danger ml-2" v-if="(me['level'] < data['item']['level']) && !data['item']['active']">
+                                <font-awesome-icon icon="user-times" />
+                            </button>
+                            <button @click="toggle(data['item'])" class="btn btn-info ml-2" v-if="(me['level'] < data['item']['level']) && data['item']['active']">
+                                 <font-awesome-icon icon="user" />
+                            </button>
+                    </template>
+                </b-table> 
+                <b-table 
+                    responsive 
+                    striped 
+                    :items="items" 
+                    :fields="fields" 
+                    dark="dark" 
+                    :per-page="perPage" 
+                    :current-page="currentPage"
+                    class="d-none d-sm-block"
+                >
                     <template v-slot:cell(level)="data">
                         {{ level(data['item']['level']) }}
                         <img v-if="data['item']['level'] <= 1" class="badge_icon" src="@/assets/images/badges/1.svg" alt="">

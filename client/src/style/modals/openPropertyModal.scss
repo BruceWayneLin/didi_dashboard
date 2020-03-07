@@ -1,0 +1,11 @@
+.openPropertyModal {
+    @extend %customModalScss;
+    z-index: 88;
+    .content {
+        margin-top: 60px;
+        height: 80vh;
+        table {
+            margin-top: 0px;
+        }
+    }
+}

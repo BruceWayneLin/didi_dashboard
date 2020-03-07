@@ -21,7 +21,6 @@ export default {
       let data = {}
       data['url'] = this.$root.$options.apiUrl['api1']
       this.$store.dispatch('getApi', data).then((item)=>{
-        console.log(item)
         this.$store.dispatch('updateme', item['data']['user'])
       })
     }
