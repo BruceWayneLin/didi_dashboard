@@ -17,7 +17,6 @@ export default {
       let data = {}
       data['url'] = this.$root.$options.apiUrl['api1']
       this.$store.dispatch('getApi', data).then((item)=>{
-        console.log('in')
         this.$store.dispatch('updateme', item['data']['user'])
       })
     }
@@ -28,7 +27,7 @@ export default {
     }
   },
   async mounted() {
-    if(this.$route.path == '/') return
+    if(this.$route.path == '/')
     await this.getMe()
   }
 }
