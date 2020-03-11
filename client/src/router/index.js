@@ -26,6 +26,26 @@ const routes = [
     path: '/DidiMemberEdit',
     name: 'DidiMemberEdit',
     component: loadView('DidiMemberEdit')
+  },
+  {
+    path: '/DidInventory',
+    name: 'DidInventory',
+    component: loadView('DidInventory')
+  },
+  {
+    path: '/PaymentCheck',
+    name: 'PaymentCheck',
+    component: loadView('PaymentCheck')
+  },
+  {
+    path: '/RecomInfo',
+    name: 'RecomInfo',
+    component: loadView('RecomInfo')
+  },
+  {
+    path: '/SaleSetting',
+    name: 'SaleSetting',
+    component: loadView('SaleSetting')
   }
 ]
 

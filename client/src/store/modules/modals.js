@@ -2,7 +2,9 @@ const state = {
     addUsers: false,
     editUser: false,
     openPropertyModal: false,
-    userDetailInfo: {}
+    userDetailInfo: {},
+    releaseTool: false,
+    capiModalTog: false
 }
 
 const getters = {
@@ -22,6 +24,12 @@ const actions = {
     editUser({ commit }, payload) {
         commit('editUser', payload)
     },
+    releaseTool({ commit }, payload) {
+        commit('releaseTool', payload)
+    },
+    capiModalTog({ commit }, payload) {
+        commit('capiModalTog', payload)
+    },
 
 }
 
@@ -38,6 +46,12 @@ const mutations = {
     },
     editUser(state, payload) { 
         state['editUser'] = payload
+    },
+    releaseTool(state, payload) { 
+        state['releaseTool'] = payload
+    },
+    capiModalTog(state, payload) { 
+        state['capiModalTog'] = payload
     }
 }
 

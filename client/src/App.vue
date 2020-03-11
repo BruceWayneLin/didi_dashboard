@@ -13,22 +13,13 @@ export default {
     busyLoading
   },
   methods: {
-    getMe() {
-      let data = {}
-      data['url'] = this.$root.$options.apiUrl['api1']
-      this.$store.dispatch('getApi', data).then((item)=>{
-        this.$store.dispatch('updateme', item['data']['user'])
-      })
-    }
   },
   computed: {
     busyLoading() {
       return this.$store.state.control.busyLoading
     }
   },
-  async mounted() {
-    if(this.$route.path == '/')
-    await this.getMe()
+  mounted() {
   }
 }
 </script>

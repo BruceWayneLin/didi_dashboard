@@ -1,0 +1,7 @@
+.capiModal {
+    @extend %customModalScss;
+    z-index: 9999;
+    .content {
+        padding-top: 55px;
+    }
+}

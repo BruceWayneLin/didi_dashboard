@@ -17,13 +17,20 @@
                 <font-awesome-icon icon="list-alt"/>
                 {{this.$root.$options['lang']['DASHBOARD_USERSMANGE']}}
             </li> -->
-            <li @click="redirect('DidiMember')">
+            <li >
                 <font-awesome-icon icon="list-alt"/>
-                {{this.$root.$options['lang']['DIDIUSERSMANGE']}}
+                <span @click="toggleM(1)"> 會員管理</span>
+                <div class="pl-3" v-show="menuOne">
+                    <div @click="redirect('DidiMember')">- {{this.$root.$options['lang']['DIDIUSERSMANGE']}}</div>
+                    <div @click="redirect('PaymentCheck')">- 調帳審核</div>
+                </div>
             </li>
             <li>
                 <font-awesome-icon icon="list-alt" />
-                {{this.$root.$options['lang']['RECOMMANGE']}}
+                <span @click="toggleM(2)"> {{this.$root.$options['lang']['RECOMMANGE']}}</span>
+                <div class="pl-3" v-show="menuTwo">
+                    <div @click="redirect('RecomInfo')">- 推薦資訊</div>
+                </div>
             </li>
             <li>
                 <font-awesome-icon icon="list-alt" />
@@ -31,9 +38,12 @@
             </li>
             <li>
                 <font-awesome-icon icon="list-alt" />
-                {{this.$root.$options['lang']['MARKET_TRADE_RECORD']}}
+                <span @click="toggleM(3)"> {{this.$root.$options['lang']['GAME_SETTING']}}</span>
+                <div class="pl-3" v-show="menuThree">
+                    <div @click="redirect('SaleSetting')">- 商店出售設定(列表)</div>
+                </div>
             </li>
-            <li>
+            <!-- <li>
                 <font-awesome-icon icon="list-alt" />
                 {{this.$root.$options['lang']['MARKET_TRADE_RESERVED_RECORD']}}
             </li>
@@ -80,7 +90,7 @@
             <li>
                 <font-awesome-icon icon="list-alt" />
                 {{this.$root.$options['lang']['REPORT']}}
-            </li>
+            </li> -->
             <li>
                 <div @click="logout()">
                     <font-awesome-icon icon="sign-out-alt" />
@@ -96,7 +106,28 @@ const modal = require('../../alertModal')
 
 export default {
     name: 'sideNav',
+    data() {
+        return {
+            menuOne: false,
+            menuTwo: false,
+            menuThree: false
+        }
+    },
     methods: {
+        toggleM(tag) {
+            switch(tag) {
+                case 1:
+                    this.menuOne = !this.menuOne
+                break;
+                case 2:
+                    this.menuTwo = !this.menuTwo
+                break;
+                case 3:
+                    this.menuThree = !this.menuThree
+                break;
+                default:
+            }
+        },
         logout() {
             let data = {};
             data['url'] = this.$root.$options.apiUrl['api4']

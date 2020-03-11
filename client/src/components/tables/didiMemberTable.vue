@@ -10,7 +10,12 @@
                     :per-page="perPage" 
                     :current-page="currentPage"
                     class="d-sm-none"
-                >
+                >   
+                    <template v-slot:cell(capital_state)="data">
+                        <div class="mock-a" @click="capiModal()">
+                            調帳
+                        </div>
+                    </template>
                     <template v-slot:cell(status)="data">
                         <div v-if="data['item']['status'] == 0">
                             啟用
@@ -23,17 +28,14 @@
                     </template>
                     <template v-slot:cell(manipulation)="data">
                         <div class="m-1">
-                            <font-awesome-icon class="m-1" icon="eye" />
+                            <!-- <font-awesome-icon class="m-1" icon="eye" /> -->
                             <font-awesome-icon class="m-1" icon="users" />
                             <font-awesome-icon class="m-1" icon="pencil-alt" @click="editUser(data)"/>
                         </div>
-                        <div class="btn btn-success m-1">
-                            物品
+                        <div class="btn btn-success m-1" @click="redirect('DidInventory', data)">
+                            物品/裝備倉
                         </div>
-                        <div class="btn btn-primary m-1">
-                            裝備倉
-                        </div>
-                        <div class="btn btn-info m-1">
+                        <div class="btn btn-info m-1" @click="release()">
                             道具/裝備發放
                         </div>
                     </template>
@@ -46,6 +48,11 @@
                     :current-page="currentPage"
                     class="d-none d-sm-block"
                 >
+                     <template v-slot:cell(capital_state)="data">
+                        <div class="mock-a" @click="capiModal(data)">
+                            調帳
+                        </div>
+                    </template>
                     <template v-slot:cell(status)="data">
                         <div v-if="data['item']['status'] == 0">
                             啟用
@@ -58,17 +65,14 @@
                     </template>
                     <template v-slot:cell(manipulation)="data">
                         <div class="m-1">
-                            <font-awesome-icon class="m-1" icon="eye" />
+                            <!-- <font-awesome-icon class="m-1" icon="eye" /> -->
                             <font-awesome-icon class="m-1" icon="users" />
                             <font-awesome-icon class="m-1" icon="pencil-alt" @click="editUser(data)"/>
                         </div>
-                        <div class="btn btn-success m-1">
-                            物品
+                        <div class="btn btn-success m-1" @click="redirect('DidInventory', data)">
+                            物品/裝備倉
                         </div>
-                        <div class="btn btn-primary m-1">
-                            裝備倉
-                        </div>
-                        <div class="btn btn-info m-1">
+                        <div class="btn btn-info m-1" @click="release()">
                             道具/裝備發放
                         </div>
                     </template>
@@ -131,7 +135,7 @@ export default {
                     }
                 },
                 {
-                    reccomend_account: {
+                    recommend_account: {
                         label: this.$root.$options.lang['RECOMMEND_ACCOUNT'],
                         sortable: true
                     }
@@ -177,6 +181,10 @@ export default {
         }
     },
     methods: {
+        redirect(url, data) {
+            this.$router.push(url)
+            this.$store.dispatch('detailUser', data)
+        },
         editUser(data) {
             this.$router.push('didiMemberEdit')
             this.$store.dispatch('detailUser', data)
@@ -187,6 +195,14 @@ export default {
             this.$store.dispatch('postApi', data).then((item)=>{
                 this.items = item['data']
             })
+        },
+        release() {
+            this.$store.dispatch('releaseTool', true)
+        },
+        capiModal(data) {
+            console.log(data)
+            this.$store.dispatch('detailUser', data)
+            this.$store.dispatch('capiModalTog', true)
         }
     },
     computed: {

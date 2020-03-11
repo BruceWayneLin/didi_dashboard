@@ -1,8 +1,11 @@
 @import './common/common.scss';
 @import './pages/app.scss';
+@import './pages/paymentCheck.scss';
+@import './pages/recomInfo.scss';
 @import './components/login.scss';
 @import './components/register.scss';
 @import './components/tables/usersTable.scss';
+@import './components/tables/saleSettingTable.scss';
 @import './components/tables/didiMemberTable.scss';
 @import './UI/navbar/navbar.scss';
 @import './UI/navbar/sideNav.scss';
@@ -11,4 +14,9 @@
 @import './modals/addUser.scss';
 @import './modals/editUser.scss';
 @import './modals/openPropertyModal.scss';
+@import './modals/releaseTool.scss';
+@import './modals/capiModal.scss';
 @import './components/didiMember/memberDetail.scss';
+@import './components/didiMember/Inventory.scss';
+@import './components/paymentCheck/statement.scss';
+@import './components/recomInfo/recomInfoIndex.scss';
