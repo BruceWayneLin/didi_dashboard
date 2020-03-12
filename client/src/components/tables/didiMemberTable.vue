@@ -48,7 +48,7 @@
                     :current-page="currentPage"
                     class="d-none d-sm-block"
                 >
-                     <template v-slot:cell(capital_state)="data">
+                    <template v-slot:cell(capital_state)="data">
                         <div class="mock-a" @click="capiModal(data)">
                             調帳
                         </div>

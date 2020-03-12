@@ -41,6 +41,14 @@
                 <span @click="toggleM(3)"> {{this.$root.$options['lang']['GAME_SETTING']}}</span>
                 <div class="pl-3" v-show="menuThree">
                     <div @click="redirect('SaleSetting')">- 商店出售設定(列表)</div>
+                    <div @click="redirect('PlayerMarket')">- 玩家市集</div>
+                </div>
+            </li>
+            <li>
+                <font-awesome-icon icon="list-alt" />
+                <span @click="toggleM(4)"> {{this.$root.$options['lang']['MISSION_MANAGE']}}</span>
+                <div class="pl-3" v-show="menuFourth">
+                    <div @click="redirect('Mission_manage')">- 任務管理</div>
                 </div>
             </li>
             <!-- <li>
@@ -75,10 +83,7 @@
                 <font-awesome-icon icon="list-alt" />
                 {{this.$root.$options['lang']['GAME_SETTING']}}
             </li>
-            <li>
-                <font-awesome-icon icon="list-alt" />
-                {{this.$root.$options['lang']['DAYS_MISSION']}}
-            </li>
+           
             <li>
                 <font-awesome-icon icon="list-alt" />
                 {{this.$root.$options['lang']['ACHIEVEMENT']}}
@@ -110,7 +115,8 @@ export default {
         return {
             menuOne: false,
             menuTwo: false,
-            menuThree: false
+            menuThree: false,
+            menuFourth: false
         }
     },
     methods: {
@@ -124,6 +130,9 @@ export default {
                 break;
                 case 3:
                     this.menuThree = !this.menuThree
+                break;
+                case 4:
+                    this.menuFourth = !this.menuFourth
                 break;
                 default:
             }

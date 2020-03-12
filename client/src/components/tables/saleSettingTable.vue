@@ -9,8 +9,8 @@
                     class="d-none d-lg-block"
                 >
                     <template v-slot:cell(operation)="data">
-                        <button class="btn btn-info">
-                            <font-awesome-icon icon="pencil-alt" @click="editUser(data)"/>
+                        <button class="btn btn-info" @click="editUser(data)">
+                            <font-awesome-icon icon="pencil-alt" />
                             編輯
                         </button>
                         <button class="btn btn-danger ml-2">
@@ -26,6 +26,7 @@
                     :items="items" 
                     :fields="fields"
                     class="d-lg-none"
+                    :table-variant="info"
                 >
                     <template v-slot:cell(operation)="data">
                         <button class="btn btn-info">
@@ -68,7 +69,7 @@ export default {
                     }
                 },
                 {
-                    preOder: {
+                    preOrder: {
                         label: '預購',
                         sortable: true
                     }
@@ -104,6 +105,11 @@ export default {
                 {}
             ]
         }
+    },
+    methods:{
+        editUser() {
+        }
     }
+
 }
 </script>

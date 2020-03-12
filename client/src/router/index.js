@@ -46,6 +46,16 @@ const routes = [
     path: '/SaleSetting',
     name: 'SaleSetting',
     component: loadView('SaleSetting')
+  },
+  {
+    path: '/Mission_manage',
+    name: 'Mission_manage',
+    component: loadView('Mission_manage')
+  },
+  {
+    path: '/PlayerMarket',
+    name: 'PlayerMarket',
+    component: loadView('PlayerMarket')
   }
 ]
 

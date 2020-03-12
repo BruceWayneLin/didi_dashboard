@@ -34,7 +34,7 @@ const lang = {
         'INTERGRAL_RECORD': '積分紀錄',
         'APPEAL_RECORD': '申訴紀錄',
         'GAME_SETTING': '遊戲設定',
-        'DAYS_MISSION': '每日任務',
+        'MISSION_MANAGE': '任務',
         'ACHIEVEMENT': '成就',
         'DEPOSIT': '儲值',
         'REPORT': '報表',

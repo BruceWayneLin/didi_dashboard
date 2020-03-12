@@ -4,7 +4,8 @@ const state = {
     openPropertyModal: false,
     userDetailInfo: {},
     releaseTool: false,
-    capiModalTog: false
+    capiModalTog: false,
+    markSaleTool: false
 }
 
 const getters = {
@@ -30,6 +31,9 @@ const actions = {
     capiModalTog({ commit }, payload) {
         commit('capiModalTog', payload)
     },
+    markSaleTool({ commit }, payload) {
+        commit('markSaleTool', payload)
+    },
 
 }
 
@@ -52,7 +56,10 @@ const mutations = {
     },
     capiModalTog(state, payload) { 
         state['capiModalTog'] = payload
-    }
+    },
+    markSaleTool(state, payload) { 
+        state['markSaleTool'] = payload
+    },
 }
 
 export default {
