@@ -1,0 +1,7 @@
+.marketValueSet {
+    @extend %customModalScss;
+    z-index: 99999;
+    .content {
+        padding-top: 55px;
+    }
+}

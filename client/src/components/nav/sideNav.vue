@@ -42,6 +42,7 @@
                 <div class="pl-3" v-show="menuThree">
                     <div @click="redirect('SaleSetting')">- 商店出售設定(列表)</div>
                     <div @click="redirect('PlayerMarket')">- 玩家市集</div>
+                    <div @click="redirect('Deposit')">- 儲值設定</div>
                 </div>
             </li>
             <li>

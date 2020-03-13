@@ -56,7 +56,18 @@ const routes = [
     path: '/PlayerMarket',
     name: 'PlayerMarket',
     component: loadView('PlayerMarket')
-  }
+  },
+  {
+    path: '/Deposit',
+    name: 'Deposit',
+    component: loadView('Deposit')
+  },
+  {
+    path: '/RecomDetail',
+    name: 'RecomDetail',
+    component: loadView('RecomDetail')
+  },
+  
 ]
 
 const router = new VueRouter({

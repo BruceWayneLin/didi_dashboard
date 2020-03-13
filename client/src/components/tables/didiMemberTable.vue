@@ -10,7 +10,12 @@
                     :per-page="perPage" 
                     :current-page="currentPage"
                     class="d-sm-none"
-                >   
+                >  
+                    <template v-slot:cell(recommend_account)="data">
+                        <div class="mock-a" @click="redirectRecom(data)">
+                            推薦人
+                        </div>
+                    </template> 
                     <template v-slot:cell(capital_state)="data">
                         <div class="mock-a" @click="capiModal()">
                             調帳
@@ -48,6 +53,11 @@
                     :current-page="currentPage"
                     class="d-none d-sm-block"
                 >
+                     <template v-slot:cell(recommend_account)="data">
+                        <div class="mock-a" @click="redirectRecom(data)">
+                            推薦人
+                        </div>
+                    </template> 
                     <template v-slot:cell(capital_state)="data">
                         <div class="mock-a" @click="capiModal(data)">
                             調帳
@@ -185,6 +195,11 @@ export default {
             this.$router.push(url)
             this.$store.dispatch('detailUser', data)
         },
+        redirectRecom(data){
+            this.$router.push('RecomDetail')
+            this.$store.dispatch('openRecomModal', data)
+            this.$store.dispatch('detailUser', data)
+        },
         editUser(data) {
             this.$router.push('didiMemberEdit')
             this.$store.dispatch('detailUser', data)
@@ -203,6 +218,12 @@ export default {
             console.log(data)
             this.$store.dispatch('detailUser', data)
             this.$store.dispatch('capiModalTog', true)
+        },
+        openRecomModal(data) {
+            let recomObj = {}
+            recomObj.active = true
+            recomObj.item = data
+            this.$store.dispatch('openRecomModal', recomObj)
         }
     },
     computed: {

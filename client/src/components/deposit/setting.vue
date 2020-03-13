@@ -1,7 +1,7 @@
 <template>
-    <div class="marketSale">
+    <div class="setting">
         <div class="container">
-            <h1>市集拍賣道具列表設定</h1>
+            <h1>儲值方案列表設定</h1>
             <button class="btn btn-success float-right" @click="Modals('new')">
                 新增
             </button>
@@ -11,7 +11,7 @@
                     :items="items" 
                     :fields="fields"
                 >
-                 <template v-slot:cell(op)="data">
+                 <template v-slot:cell(approve_dd_d)="data">
                      <button class="btn btn-primary"  @click="Modals('edit')">
                          編輯
                      </button>
@@ -23,7 +23,7 @@
                     :items="items" 
                     :fields="fields"
                 >
-                <template v-slot:cell(op)="data">
+                <template v-slot:cell(approve_dd_d)="data">
                      <button class="btn btn-primary" @click="Modals('edit')">
                          編輯
                      </button>
@@ -31,86 +31,68 @@
                 </b-table>
             </div>
         </div>
-        <div class="container">
-            <marketValueTable />
-        </div>
     </div>
 </template>
 <script>
-import marketValueTable from '@/components/tables/marketValueTable.vue'
 export default {
-    name: 'marketSale',
+    name: 'setting',
+    methods: {
+        Modals(text) {
+            let modalObj =  {
+                active: true,
+                title: text
+            }
+            this.$store.dispatch('depositModal', modalObj)
+        }
+
+    },
     data() {
         return {
             fields: [
                 {
                     ID: {
-                        label: '道具種類',
+                        label: '方案',
                         sortable: true
                     }
                 },
                 {
                     tool_name: {
-                        label: '道具等級',
+                        label: '儲值金額',
                         sortable: true
                     }
                 },
                 {
                     quantity: {
-                        label: '價值',
+                        label: '參數1',
                         sortable: true
                     }
                 },
                 {
                     operation: {
-                        label: '預約開始時間',
+                        label: '參數2',
                         sortable: true
                     }
                 },
                 {
                     application_date: {
-                        label: '預約結束時間',
+                        label: '方案數量',
                         sortable: true
                     }
                 },
                 {
                     result: {
-                        label: '搶購開始時間',
-                        sortable: true
-                    }
-                },
-                {
-                    approve_pp_t: {
-                        label: '搶購結束時間',
-                        sortable: true
-                    }
-                },
-                {
-                    approve_dd_d: {
-                        label: '搶購元寶',
-                        sortable: true
-                    }
-                },
-                {
-                    approve_dd_c: {
-                        label: '結算時間',
-                        sortable: true
-                    }
-                },
-                {
-                    approve_dsd: {
                         label: '狀態',
                         sortable: true
                     }
                 },
                 {
-                    created_time: {
+                    approve_pp_t: {
                         label: '生效時間',
                         sortable: true
                     }
                 },
                 {
-                    op: {
+                    approve_dd_d: {
                         label: '操作',
                         sortable: true
                     }
@@ -122,17 +104,5 @@ export default {
             ]
         }
     },
-    methods: {
-        Modals(text) {
-            let modalObj =  {
-                active: true,
-                title: text
-            }
-            this.$store.dispatch('markSaleTool', modalObj)
-        }
-    },
-    components: {
-        marketValueTable
-    }
 }
 </script>

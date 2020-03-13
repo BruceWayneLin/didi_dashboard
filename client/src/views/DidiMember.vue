@@ -13,7 +13,6 @@ import sideNav from '@/components/nav/sideNav.vue'
 import didiMemberTable from '@/components/tables/didiMemberTable.vue'
 import releaseTool from '@/components/modals/releaseTool.vue'
 import capiModal from '@/components/modals/capiModal.vue'
-
 export default {
   name: 'DidiMember',
   components: {
@@ -21,7 +20,7 @@ export default {
     sideNav,
     didiMemberTable,
     releaseTool,
-    capiModal
+    capiModal,
   },
   methods: {
     getMe() {

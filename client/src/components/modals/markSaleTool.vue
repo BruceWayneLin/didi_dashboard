@@ -2,7 +2,7 @@
     <div class="markSaleTool">
         <div class="content p-5 mt-4">
             <img id="del-icon" src="~@/assets/images/icon-cancel.png" alt="" @click="closeModal()">
-            <h1>新增市集拍賣道具</h1>
+            <h1>{{markSaleTool.title == 'edit'? '編輯':'新增'}}市集拍賣道具</h1>
             <div class="row">
                 <div class="container">
                     <div class="form-group">
@@ -111,7 +111,6 @@
                 </div>
             </div>
         </div>
-        
     </div>
 </template>
 <script>
@@ -119,8 +118,17 @@ export default {
     name: 'markSaleTool',
     methods: {
         closeModal() {
-            this.$store.dispatch('markSaleTool', false)
+            let Modal = {}
+            Modal.active = false
+            Modal.title = ''
+            this.$store.dispatch('markSaleTool', Modal)
+        }
+    },
+    computed: {
+        markSaleTool() {
+            return this.$store.state.modals.markSaleTool
         }
     }
+
 }
 </script>

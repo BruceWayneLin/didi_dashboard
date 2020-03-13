@@ -2,6 +2,8 @@
 @import './pages/app.scss';
 @import './pages/paymentCheck.scss';
 @import './pages/recomInfo.scss';
+@import './pages/deposit.scss';
+@import './pages/saleSetting.scss';
 @import './components/login.scss';
 @import './components/register.scss';
 @import './components/tables/usersTable.scss';
@@ -18,8 +20,12 @@
 @import './modals/releaseTool.scss';
 @import './modals/capiModal.scss';
 @import './modals/markSaleTool.scss';
+@import './modals/depositModal.scss';
+@import './modals/marketValueSet.scss';
+@import './components/didiMember/openRecom.scss';
 @import './components/didiMember/memberDetail.scss';
 @import './components/didiMember/Inventory.scss';
 @import './components/playerMarket/marketSale.scss';
 @import './components/paymentCheck/statement.scss';
 @import './components/recomInfo/recomInfoIndex.scss';
+@import './components/deposit/setting.scss';

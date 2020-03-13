@@ -5,7 +5,18 @@ const state = {
     userDetailInfo: {},
     releaseTool: false,
     capiModalTog: false,
-    markSaleTool: false
+    markSaleTool: {
+        active: false,
+        title: ''
+    },
+    depositModal: {
+        active: false,
+        title: ''
+    },
+    marketValueSet: false,
+    openRecomModal: {
+        item: ''
+    }
 }
 
 const getters = {
@@ -34,6 +45,15 @@ const actions = {
     markSaleTool({ commit }, payload) {
         commit('markSaleTool', payload)
     },
+    depositModal({ commit }, payload) {
+        commit('depositModal', payload)
+    },
+    marketValueSet({ commit }, payload) {
+        commit('marketValueSet', payload)
+    },
+    openRecomModal({ commit }, payload) {
+        commit('openRecomModal', payload)
+    },
 
 }
 
@@ -58,7 +78,16 @@ const mutations = {
         state['capiModalTog'] = payload
     },
     markSaleTool(state, payload) { 
-        state['markSaleTool'] = payload
+        state['markSaleTool']['active'] = payload.active
+        state['markSaleTool']['title'] = payload.title
+    },
+    depositModal(state, payload) { 
+        state['depositModal']['active'] = payload.active
+        state['depositModal']['title'] = payload.title
+    },
+    openRecomModal(state, payload) { 
+        state['openRecomModal']['active'] = payload.active
+        state['openRecomModal']['item'] = payload.item
     },
 }
 

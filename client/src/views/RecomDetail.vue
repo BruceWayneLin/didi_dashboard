@@ -1,24 +1,20 @@
 <template>
-    <div class="SaleSetting">
+    <div class="recomDetail">
         <navbar />
         <sideNav />
-        <marketPreOrderTime />
-        <saleSettingTable />
+        <openRecom />
     </div>
 </template>
 <script>
 import navbar from '@/components/nav/navbar.vue'
 import sideNav from '@/components/nav/sideNav.vue'
-import saleSettingTable from '@/components/tables/saleSettingTable'
-import marketPreOrderTime from '@/components/tables/marketPreOrderTime'
-
+import openRecom from '@/components/didiMember/openRecom.vue'
 export default {
-    name: 'SaleSetting',
+    name: 'recomDetail',
     components: {
         navbar,
         sideNav,
-        saleSettingTable,
-        marketPreOrderTime
+        openRecom
     },
     methods: {
         getMe() {
