@@ -17,7 +17,60 @@
                 <font-awesome-icon icon="list-alt"/>
                 {{this.$root.$options['lang']['DASHBOARD_USERSMANGE']}}
             </li> -->
-            <li >
+
+            <b-nav>
+                <font-awesome-icon id="fa-icon" icon="list-alt" />
+                <b-nav-item-dropdown
+                    text="會員管理"
+                    toggle-class="nav-link-custom"
+                    right
+                >
+                    <b-dropdown-item>- {{this.$root.$options['lang']['DIDIUSERSMANGE']}}</b-dropdown-item>
+                    <b-dropdown-item>- 調帳審核</b-dropdown-item>
+                </b-nav-item-dropdown>
+               
+                <font-awesome-icon id="fa-icon" icon="list-alt" />
+                <b-nav-item-dropdown
+                    text="推薦管理(好友)"
+                    toggle-class="nav-link-custom"
+                    right
+                >
+                    <b-dropdown-item @click="redirect('RecomInfo')">- 調帳審核</b-dropdown-item>
+                </b-nav-item-dropdown>
+
+                <font-awesome-icon id="fa-icon" icon="list-alt" />
+                <b-nav-item>
+                    {{this.$root.$options['lang']['RECOMGROUP']}}
+                </b-nav-item>
+
+                <font-awesome-icon id="fa-icon" icon="list-alt" />
+                <b-nav-item-dropdown
+                    text="遊戲設定"
+                    toggle-class="nav-link-custom"
+                    right
+                >
+                    <b-dropdown-item @click="redirect('SaleSetting')">- 商店出售設定(列表)</b-dropdown-item>
+                    <b-dropdown-item @click="redirect('PlayerMarket')">- 玩家市集</b-dropdown-item>
+                    <b-dropdown-item @click="redirect('Deposit')">- 儲值設定</b-dropdown-item>
+                </b-nav-item-dropdown>
+
+                <font-awesome-icon id="fa-icon" icon="list-alt" />
+                <b-nav-item-dropdown
+                    text="任務管理"
+                    toggle-class="nav-link-custom"
+                    right
+                >
+                    <b-dropdown-item @click="redirect('Mission_manage')">- 任務管理</b-dropdown-item>
+                </b-nav-item-dropdown>
+
+                <b-nav-item @click="logout()">
+                    <font-awesome-icon icon="sign-out-alt" />
+                    {{this.$root.$options['lang']['LOGOUT']}}
+                </b-nav-item>
+
+            </b-nav>
+
+            <!-- <li >
                 <font-awesome-icon icon="list-alt"/>
                 <span @click="toggleM(1)"> 會員管理</span>
                 <div class="pl-3" v-show="menuOne">
@@ -51,7 +104,12 @@
                 <div class="pl-3" v-show="menuFourth">
                     <div @click="redirect('Mission_manage')">- 任務管理</div>
                 </div>
-            </li>
+            </li> -->
+
+
+
+
+
             <!-- <li>
                 <font-awesome-icon icon="list-alt" />
                 {{this.$root.$options['lang']['MARKET_TRADE_RESERVED_RECORD']}}
@@ -97,12 +155,6 @@
                 <font-awesome-icon icon="list-alt" />
                 {{this.$root.$options['lang']['REPORT']}}
             </li> -->
-            <li>
-                <div @click="logout()">
-                    <font-awesome-icon icon="sign-out-alt" />
-                    {{this.$root.$options['lang']['LOGOUT']}}
-                </div>
-            </li>
         </ul>
     </div>
 </template>
@@ -114,30 +166,9 @@ export default {
     name: 'sideNav',
     data() {
         return {
-            menuOne: false,
-            menuTwo: false,
-            menuThree: false,
-            menuFourth: false
         }
     },
     methods: {
-        toggleM(tag) {
-            switch(tag) {
-                case 1:
-                    this.menuOne = !this.menuOne
-                break;
-                case 2:
-                    this.menuTwo = !this.menuTwo
-                break;
-                case 3:
-                    this.menuThree = !this.menuThree
-                break;
-                case 4:
-                    this.menuFourth = !this.menuFourth
-                break;
-                default:
-            }
-        },
         logout() {
             let data = {};
             data['url'] = this.$root.$options.apiUrl['api4']
