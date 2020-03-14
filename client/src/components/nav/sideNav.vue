@@ -19,7 +19,6 @@
             </li> -->
 
             <b-nav>
-                <font-awesome-icon id="fa-icon" icon="list-alt" />
                 <b-nav-item-dropdown
                     text="會員管理"
                     toggle-class="nav-link-custom"
@@ -29,7 +28,6 @@
                     <b-dropdown-item>- 調帳審核</b-dropdown-item>
                 </b-nav-item-dropdown>
                
-                <font-awesome-icon id="fa-icon" icon="list-alt" />
                 <b-nav-item-dropdown
                     text="推薦管理(好友)"
                     toggle-class="nav-link-custom"
@@ -43,7 +41,6 @@
                     {{this.$root.$options['lang']['RECOMGROUP']}}
                 </b-nav-item>
 
-                <font-awesome-icon id="fa-icon" icon="list-alt" />
                 <b-nav-item-dropdown
                     text="遊戲設定"
                     toggle-class="nav-link-custom"
@@ -54,7 +51,6 @@
                     <b-dropdown-item @click="redirect('Deposit')">- 儲值設定</b-dropdown-item>
                 </b-nav-item-dropdown>
 
-                <font-awesome-icon id="fa-icon" icon="list-alt" />
                 <b-nav-item-dropdown
                     text="任務管理"
                     toggle-class="nav-link-custom"
