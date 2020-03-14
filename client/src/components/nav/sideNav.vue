@@ -36,7 +36,6 @@
                     <b-dropdown-item @click="redirect('RecomInfo')">- 調帳審核</b-dropdown-item>
                 </b-nav-item-dropdown>
 
-                <font-awesome-icon id="fa-icon" icon="list-alt" />
                 <b-nav-item>
                     {{this.$root.$options['lang']['RECOMGROUP']}}
                 </b-nav-item>
