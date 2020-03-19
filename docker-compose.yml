@@ -17,12 +17,12 @@ services:
     networks:
       - vpn
 
-  mysql: 
+  didi_mysql: 
     image: mysql:8
     restart: always
-    container_name: mysql
-    volumes:
-      - ./init/init.sql:/docker-entrypoint-initdb.d/init.sql
+    container_name: didi_mysql
+    # volumes:
+    #   - ./init/init.sql:/docker-entrypoint-initdb.d/init.sql
     # healthcheck:
     #   test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
     #   timeout: 20s
@@ -44,9 +44,9 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     links: 
-      - mysql:mysql
+      - didi_mysql:didi_mysql
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: didi_mysql
       PMA_PORT: 3306
       PMA_PASSWORD: didiSuper%4F
     restart: always
@@ -65,9 +65,9 @@ services:
     ports:
       - 5000:5000
     links:
-      - mysql:mysql
+      - didi_mysql:didi_mysql
     depends_on:
-      - mysql
+      - didi_mysql
     networks:
       - vpn
     environment: 
