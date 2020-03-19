@@ -11,7 +11,7 @@ services:
     depends_on:
       - web-server
       - phpmyadmin
-      - mysql
+      - didi_mysql
     ports: 
       - 8888:80
     networks:
