@@ -24,8 +24,8 @@
                     toggle-class="nav-link-custom"
                     right
                 >
-                    <b-dropdown-item>- {{this.$root.$options['lang']['DIDIUSERSMANGE']}}</b-dropdown-item>
-                    <b-dropdown-item>- 調帳審核</b-dropdown-item>
+                    <b-dropdown-item @click="redirect('DidiMember')">- {{this.$root.$options['lang']['DIDIUSERSMANGE']}}</b-dropdown-item>
+                    <b-dropdown-item @click="redirect('PaymentCheck')">- 調帳審核</b-dropdown-item>
                 </b-nav-item-dropdown>
                
                 <b-nav-item-dropdown
